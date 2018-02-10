@@ -1,16 +1,19 @@
 package com.example.fluke.training.ui.main.discover
 
+import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
+import android.view.KeyEvent
 import com.example.fluke.training.R
 import com.example.fluke.training.base.BaseFragment
 import com.example.fluke.training.di.ApplicationComponent
 import com.example.fluke.training.main.fragment.discover.DiscoverContractor
 import com.example.fluke.training.main.fragment.discover.DiscoverPresenter
-import com.example.fluke.training.main.fragment.discover.adapter.MovieGenresAdapter
-import com.example.fluke.training.main.fragment.discover.adapter.TelevisionGenresAdapter
 import com.example.fluke.training.model.MovieType
 import com.example.fluke.training.model.TelevisionType
+import com.example.fluke.training.ui.main.discover.adapter.MovieGenresAdapter
+import com.example.fluke.training.ui.main.discover.adapter.TelevisionGenresAdapter
+import com.example.fluke.training.ui.result.ResultActivity
 import kotlinx.android.synthetic.main.fragment_discover.*
 
 class DiscoverFragment : BaseFragment<DiscoverContractor.View, DiscoverPresenter>(), DiscoverContractor.View {
@@ -31,8 +34,15 @@ class DiscoverFragment : BaseFragment<DiscoverContractor.View, DiscoverPresenter
             adapter = movieGenresGenresAdapter
         }
         listTelevisionGenres.apply {
-            layoutManager = LinearLayoutManager(context , OrientationHelper.HORIZONTAL , false)
+            layoutManager = LinearLayoutManager(context, OrientationHelper.HORIZONTAL, false)
             adapter = televisionGenresAdapter
+        }
+        edtSearch.setOnKeyListener { _, keyCode, keyEvent ->
+            if (keyEvent.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                context?.startActivity(Intent(context, ResultActivity::class.java)
+                        .putExtra(KEY_SEARCH, edtSearch.text.toString()))
+                true
+            } else false
         }
     }
 
@@ -45,5 +55,11 @@ class DiscoverFragment : BaseFragment<DiscoverContractor.View, DiscoverPresenter
 
     override fun doInjection(appComponent: ApplicationComponent) {
         appComponent.inject(this)
+    }
+
+    companion object {
+        const val KEY_MOVIE = "OBJGENRES"
+        const val KEY_TELEVISION = "OBJTELE"
+        const val KEY_SEARCH = "OBJSEARCH"
     }
 }

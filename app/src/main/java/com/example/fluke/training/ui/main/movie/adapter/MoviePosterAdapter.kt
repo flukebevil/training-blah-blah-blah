@@ -8,6 +8,7 @@ import com.example.fluke.training.ui.main.movie.holder.MoviePosterHolder
 import com.example.fluke.training.model.Movie
 
 class MoviePosterAdapter(private var movieList: List<Movie>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+
     fun setItem(arr: List<Movie>) = apply {
         movieList = arr
         notifyDataSetChanged()

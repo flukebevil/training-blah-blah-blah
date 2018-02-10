@@ -26,6 +26,7 @@ open class GetData(private val baseApi: BaseService) {
     fun selectMoviePopData() = baseApi.selectMoviePopular()
     fun selectMovieTopData() = baseApi.selectMovieTopRate()
     fun selectMovieUpComing() = baseApi.selectMovieUpcoming()
+    fun selectMovieFromKey(key : String) = baseApi.search(key)
     fun selectTelevisionPopData() = baseApi.televisionPopular()
     fun selectTelevisionTopRate() = baseApi.televisionTopRate()
     fun selectTelevisionUpComing() = baseApi.televisionOnTheAir()
@@ -33,6 +34,12 @@ open class GetData(private val baseApi: BaseService) {
 
     fun requestMoviePopData(callback: BaseSubScribe.ResponseWtf<MovieList>) {
         selectMoviePopData().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(BaseSubScribe(callback))
+    }
+
+    fun requestMovieDataSearch(key: String,callback: BaseSubScribe.ResponseWtf<MovieList>){
+        selectMovieFromKey(key).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(BaseSubScribe(callback))
     }
@@ -102,7 +109,8 @@ open class GetData(private val baseApi: BaseService) {
                     override fun success(t: TelevisionTypeList) {
                         callback.onCallGenresTelevisionSuccess(t)
                     }
-
                 }))
     }
+
+
 }

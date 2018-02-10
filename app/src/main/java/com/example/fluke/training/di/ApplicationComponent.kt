@@ -6,6 +6,7 @@ import com.example.fluke.training.ui.main.HomeActivity
 import com.example.fluke.training.ui.main.discover.DiscoverFragment
 import com.example.fluke.training.ui.main.movie.HomeMovieFragment
 import com.example.fluke.training.ui.main.television.HomeTvFragment
+import com.example.fluke.training.ui.result.ResultActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -16,4 +17,5 @@ interface ApplicationComponent {
     fun inject(homeActivity: HomeActivity)
     fun inject(homeTvFragment: HomeTvFragment)
     fun inject(discoverFragment: DiscoverFragment)
+    fun inject(resultActivity: ResultActivity)
 }

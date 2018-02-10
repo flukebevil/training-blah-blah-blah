@@ -10,39 +10,44 @@
         android:padding="5dp">
 
         <EditText
+            android:id="@+id/edtSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:hint="@string/search_movie_by_keyword"
+            android:inputType="text"
             android:padding="10dp"
+            android:singleLine="true"
             android:textStyle="bold" />
 
         <TextView
-            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:padding="10dp"
             android:text="@string/movie_by_genres"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"/>
+            android:textStyle="bold" />
+
         <android.support.v7.widget.RecyclerView
-            android:layout_marginTop="5dp"
-            android:padding="10dp"
             android:id="@+id/listMovieGenres"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="10dp" />
 
         <TextView
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:text="@string/television_by_genres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"/>
-        <android.support.v7.widget.RecyclerView
             android:layout_marginTop="5dp"
             android:padding="10dp"
+            android:text="@string/television_by_genres"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/listTelevisionGenres"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="10dp" />
     </LinearLayout>
 </ScrollView>

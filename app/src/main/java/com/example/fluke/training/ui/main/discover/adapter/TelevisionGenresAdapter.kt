@@ -1,10 +1,10 @@
-package com.example.fluke.training.main.fragment.discover.adapter
+package com.example.fluke.training.ui.main.discover.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.fluke.training.R
-import com.example.fluke.training.main.fragment.discover.holder.TelevisionGenresHolder
+import com.example.fluke.training.ui.main.discover.holder.TelevisionGenresHolder
 import com.example.fluke.training.model.TelevisionType
 
 class TelevisionGenresAdapter(private var arr: List<TelevisionType>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
