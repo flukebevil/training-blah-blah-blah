@@ -8,7 +8,6 @@ import com.example.fluke.training.ui.main.adapter.Pager
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : BaseActivity() {
-
     override fun layoutContentView(): Int = R.layout.activity_home
     private var pager: Pager? = null
 
@@ -30,5 +29,10 @@ class HomeActivity : BaseActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+    companion object {
+        const val tab1 = "Movie"
+        const val tab2 = "Television"
+        const val tab3 = "Discover"
     }
 }

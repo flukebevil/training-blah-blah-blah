@@ -17,12 +17,19 @@ open class GetData(private val baseApi: BaseService) {
         fun upComingSuccess(t: MovieList)
     }
 
+    interface DiscoverListener {
+        fun onCallGenresMovieSuccess(t: MovieTypeList)
+        fun onCallGenresTelevisionSuccess(t: TelevisionTypeList)
+    }
+
+    fun selectMovieGenresItem() = baseApi.selectMovieGenres()
     fun selectMoviePopData() = baseApi.selectMoviePopular()
     fun selectMovieTopData() = baseApi.selectMovieTopRate()
     fun selectMovieUpComing() = baseApi.selectMovieUpcoming()
     fun selectTelevisionPopData() = baseApi.televisionPopular()
     fun selectTelevisionTopRate() = baseApi.televisionTopRate()
-    fun selectTelevisionUpComing() =  baseApi.televisionOnTheAir()
+    fun selectTelevisionUpComing() = baseApi.televisionOnTheAir()
+    fun selectTelevisionGenresItem() = baseApi.selectTelevisionGenres()
 
     fun requestMoviePopData(callback: BaseSubScribe.ResponseWtf<MovieList>) {
         selectMoviePopData().subscribeOn(Schedulers.io())
@@ -73,6 +80,27 @@ open class GetData(private val baseApi: BaseService) {
                 .subscribe(BaseSubScribe(object : BaseSubScribe.ResponseWtf<MovieList> {
                     override fun success(t: MovieList) {
                         callback.upComingSuccess(t)
+                    }
+
+                }))
+    }
+
+    fun requestMovieGenres(callback: DiscoverListener) {
+        selectMovieGenresItem().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(BaseSubScribe(object : BaseSubScribe.ResponseWtf<MovieTypeList> {
+                    override fun success(t: MovieTypeList) {
+                        callback.onCallGenresMovieSuccess(t)
+                    }
+                }))
+    }
+
+    fun requestTelevisionGenres(callback: DiscoverListener) {
+        selectTelevisionGenresItem().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(BaseSubScribe(object : BaseSubScribe.ResponseWtf<TelevisionTypeList> {
+                    override fun success(t: TelevisionTypeList) {
+                        callback.onCallGenresTelevisionSuccess(t)
                     }
 
                 }))

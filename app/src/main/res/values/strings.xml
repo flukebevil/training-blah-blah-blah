@@ -7,4 +7,7 @@
     <string name="movie_popular">Movie Popular</string>
     <string name="movie_top_rating">Movie Top Rating</string>
     <string name="upcoming">UpComing</string>
+    <string name="search_movie_by_keyword">Search Movie By KeyWord</string>
+    <string name="movie_by_genres">Movie By Genres(Popular)</string>
+    <string name="television_by_genres">Television By Genres(Popular)</string>
 </resources>

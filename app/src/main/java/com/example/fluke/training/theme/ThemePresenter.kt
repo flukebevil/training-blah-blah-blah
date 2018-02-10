@@ -2,6 +2,7 @@ package com.example.fluke.training.theme
 
 import com.example.fluke.training.base.BasePresenter
 import com.example.fluke.training.base.BaseSubScribe
+import com.example.fluke.training.main.fragment.discover.DiscoverContractor
 import com.example.fluke.training.model.GetData
 import com.example.fluke.training.model.TelevisionList
 import javax.inject.Inject
