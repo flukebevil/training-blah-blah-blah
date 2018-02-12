@@ -68,5 +68,8 @@ interface BaseService {
     fun selectTelevisionGenres(): Observable<Response<TelevisionTypeList>>
 
     @GET("movie/{movie_id}/videos?language=en-US")
-    fun selectMovieVideoPath(@Path("movie_id") query: String): Call<MovieVideoPathList>
+    fun selectMovieVideoPath(@Path("movie_id") query: String): Observable<Response<MovieVideoPathList>>
+
+    @GET("tv/{movie_id}/videos?language=en-US")
+    fun selectTelevisionVideoPath(@Path("movie_id") query: String): Observable<Response<MovieVideoPathList>>
 }

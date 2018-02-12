@@ -2,6 +2,8 @@ package com.example.fluke.training.di
 
 import com.example.fluke.training.di.network.ApiManager
 import com.example.fluke.training.di.network.ApiModule
+import com.example.fluke.training.ui.detail.movie.DetailMovieActivity
+import com.example.fluke.training.ui.detail.television.DetailTelevisionActivity
 import com.example.fluke.training.ui.main.HomeActivity
 import com.example.fluke.training.ui.main.discover.DiscoverFragment
 import com.example.fluke.training.ui.main.movie.HomeMovieFragment
@@ -18,4 +20,6 @@ interface ApplicationComponent {
     fun inject(homeTvFragment: HomeTvFragment)
     fun inject(discoverFragment: DiscoverFragment)
     fun inject(resultActivity: ResultActivity)
+    fun inject(detailMovieActivity : DetailMovieActivity)
+    fun inject(detailTelevisionActivity: DetailTelevisionActivity)
 }

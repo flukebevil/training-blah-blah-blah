@@ -1,7 +1,7 @@
 package com.example.fluke.training.di.network
 
 import android.app.Application
-import com.example.potikorn.testcoopapp.network.BaseUrl
+import com.example.fluke.training.base.BaseUrl
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module

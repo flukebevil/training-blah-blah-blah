@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import com.example.fluke.training.App
 import com.example.fluke.training.di.ApplicationComponent
+import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 
 @SuppressLint("Registered")

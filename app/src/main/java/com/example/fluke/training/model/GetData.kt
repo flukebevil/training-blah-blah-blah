@@ -22,15 +22,71 @@ open class GetData(private val baseApi: BaseService) {
         fun onCallGenresTelevisionSuccess(t: TelevisionTypeList)
     }
 
-    fun selectMovieGenresItem() = baseApi.selectMovieGenres()
-    fun selectMoviePopData() = baseApi.selectMoviePopular()
-    fun selectMovieTopData() = baseApi.selectMovieTopRate()
-    fun selectMovieUpComing() = baseApi.selectMovieUpcoming()
-    fun selectMovieFromKey(key : String) = baseApi.search(key)
-    fun selectTelevisionPopData() = baseApi.televisionPopular()
-    fun selectTelevisionTopRate() = baseApi.televisionTopRate()
-    fun selectTelevisionUpComing() = baseApi.televisionOnTheAir()
-    fun selectTelevisionGenresItem() = baseApi.selectTelevisionGenres()
+    interface ResultListener {
+        fun onMovieGenresCallDetail(t: MovieList)
+        fun onTelevisionGenresCallDetail(t: TelevisionList)
+    }
+
+    interface DetailListener {
+        fun onCrewCallback(t: CreditList)
+        fun onCallVideoPathSuccess(t: MovieVideoPathList)
+    }
+
+    private fun selectMovieGenresItem() = baseApi.selectMovieGenres()
+    private fun selectMovieGenresResultList(key: String) = baseApi.selectMovieByGenres(key)
+    private fun selectMoviePopData() = baseApi.selectMoviePopular()
+    private fun selectMovieTopData() = baseApi.selectMovieTopRate()
+    private fun selectMovieUpComing() = baseApi.selectMovieUpcoming()
+    private fun selectMovieFromKey(key: String) = baseApi.search(key)
+    private fun selectMovieCredit(key: String) = baseApi.selectMovieCredit(key)
+    private fun selectTelevisionPopData() = baseApi.televisionPopular()
+    private fun selectTelevisionTopRate() = baseApi.televisionTopRate()
+    private fun selectTelevisionUpComing() = baseApi.televisionOnTheAir()
+    private fun selectTelevisionGenresItem() = baseApi.selectTelevisionGenres()
+    private fun selectTelevisionGenresResultList(key: String) = baseApi.selectTelevisionByGenres(key)
+    private fun selectTelevisionCredit(key: String) = baseApi.selectTelevisionCredit(key)
+    private fun selectMovieVideoPath(movieId: String) = baseApi.selectMovieVideoPath(movieId)
+    private fun selectTvVideoPath(movieId: String) = baseApi.selectTelevisionVideoPath(movieId)
+
+    fun requestMovieGenresResult(key: String, callback: ResultListener) {
+        selectMovieGenresResultList(key).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(BaseSubScribe(object : BaseSubScribe.ResponseWtf<MovieList> {
+                    override fun success(t: MovieList) {
+                        callback.onMovieGenresCallDetail(t)
+                    }
+                }))
+    }
+
+    fun requestMovieVideoPath(movieId: String, callback: DetailListener) {
+        selectMovieVideoPath(movieId).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(BaseSubScribe(object : BaseSubScribe.ResponseWtf<MovieVideoPathList> {
+                    override fun success(t: MovieVideoPathList) {
+                        callback.onCallVideoPathSuccess(t)
+                    }
+                }))
+    }
+
+    fun requestTvVideoPath(movieId: String, callback: DetailListener) {
+        selectTvVideoPath(movieId).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(BaseSubScribe(object : BaseSubScribe.ResponseWtf<MovieVideoPathList> {
+                    override fun success(t: MovieVideoPathList) {
+                        callback.onCallVideoPathSuccess(t)
+                    }
+                }))
+    }
+
+    fun requestTelevisionGenresResult(key: String, call: ResultListener) {
+        selectTelevisionGenresResultList(key).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(BaseSubScribe(object : BaseSubScribe.ResponseWtf<TelevisionList> {
+                    override fun success(t: TelevisionList) {
+                        call.onTelevisionGenresCallDetail(t)
+                    }
+                }))
+    }
 
     fun requestMoviePopData(callback: BaseSubScribe.ResponseWtf<MovieList>) {
         selectMoviePopData().subscribeOn(Schedulers.io())
@@ -38,7 +94,39 @@ open class GetData(private val baseApi: BaseService) {
                 .subscribe(BaseSubScribe(callback))
     }
 
-    fun requestMovieDataSearch(key: String,callback: BaseSubScribe.ResponseWtf<MovieList>){
+    fun requestMovieCredit(key: String, callback: BaseSubScribe.ResponseWtf<CreditList>) {
+        selectMovieCredit(key).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(BaseSubScribe(callback))
+    }
+
+    fun requestMovieCrew(key: String, callback: DetailListener) {
+        selectMovieCredit(key).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(BaseSubScribe(object : BaseSubScribe.ResponseWtf<CreditList> {
+                    override fun success(t: CreditList) {
+                        callback.onCrewCallback(t)
+                    }
+                }))
+    }
+
+    fun requestTelevisionCrew(key: String, callback: DetailListener) {
+        selectTelevisionCredit(key).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(BaseSubScribe(object : BaseSubScribe.ResponseWtf<CreditList> {
+                    override fun success(t: CreditList) {
+                        callback.onCrewCallback(t)
+                    }
+                }))
+    }
+
+    fun requestTelevisionCredit(key: String, callback: BaseSubScribe.ResponseWtf<CreditList>) {
+        selectTelevisionCredit(key).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(BaseSubScribe(callback))
+    }
+
+    fun requestMovieDataSearch(key: String, callback: BaseSubScribe.ResponseWtf<MovieList>) {
         selectMovieFromKey(key).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(BaseSubScribe(callback))
@@ -111,6 +199,4 @@ open class GetData(private val baseApi: BaseService) {
                     }
                 }))
     }
-
-
 }

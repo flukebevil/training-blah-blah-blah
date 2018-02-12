@@ -11,4 +11,8 @@
     <string name="movie_by_genres">Movie By Genres(Popular)</string>
     <string name="television_by_genres">Television By Genres(Popular)</string>
     <string name="posterimage">posterImage</string>
+    <string name="back_drop_image">back drop image</string>
+    <string name="actor">Actor</string>
+    <string name="human">human</string>
+    <string name="crew">Crew</string>
 </resources>
