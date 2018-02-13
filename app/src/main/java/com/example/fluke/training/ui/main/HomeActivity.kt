@@ -1,5 +1,6 @@
 package com.example.fluke.training.ui.main
 
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import com.example.fluke.training.R
@@ -8,6 +9,7 @@ import com.example.fluke.training.di.ApplicationComponent
 import com.example.fluke.training.result.ResultContractor
 import com.example.fluke.training.result.ResultPresenter
 import com.example.fluke.training.ui.main.adapter.Pager
+import com.example.fluke.training.ui.myfav.ViewMyFavActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : BaseActivity<ResultContractor.View, ResultPresenter>() {
@@ -22,6 +24,9 @@ class HomeActivity : BaseActivity<ResultContractor.View, ResultPresenter>() {
         pager = Pager(supportFragmentManager)
         container.adapter = pager
         tabLayout?.setupWithViewPager(container)
+        btnViewMyFav.setOnClickListener {
+            startActivity(Intent(this , ViewMyFavActivity::class.java))
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

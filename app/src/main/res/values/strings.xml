@@ -15,4 +15,5 @@
     <string name="actor">Actor</string>
     <string name="human">human</string>
     <string name="crew">Crew</string>
+    <string name="myfav">myfav</string>
 </resources>

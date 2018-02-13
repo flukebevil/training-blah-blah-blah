@@ -29,6 +29,7 @@ class DiscoverFragment : BaseFragment<DiscoverContractor.View, DiscoverPresenter
     }
 
     override fun setAdapter() {
+
         listMovieGenres.apply {
             layoutManager = LinearLayoutManager(context, OrientationHelper.HORIZONTAL, false)
             adapter = movieGenresGenresAdapter
