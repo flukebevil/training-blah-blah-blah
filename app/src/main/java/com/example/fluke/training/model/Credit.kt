@@ -67,4 +67,4 @@ data class Crew(@SerializedName("job") val job: String, @SerializedName("name") 
 
 @Parcel
 data class CreditList(@SerializedName("cast") val cast_data: List<CreditActor>
-                    ,@SerializedName("crew") val crew_data: List<Crew>)
+                      , @SerializedName("crew") val crew_data: List<Crew>)

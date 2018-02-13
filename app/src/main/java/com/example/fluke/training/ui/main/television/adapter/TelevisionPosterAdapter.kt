@@ -14,8 +14,7 @@ class TelevisionPosterAdapter(private var movieList: List<Television>) : Recycle
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
-            = TelevisionPosterHolder(LayoutInflater.from(parent.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = TelevisionPosterHolder(LayoutInflater.from(parent.context)
             .inflate(viewType, parent, false))
 
     override fun getItemCount(): Int = movieList.size

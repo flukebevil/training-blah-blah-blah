@@ -7,7 +7,7 @@ abstract class BasePresenter<V : BaseContractor.View> :
 
     private var wtfView: WeakReference<V>? = null
     override fun attachView(view: V) {
-        this.wtfView = WeakReference<V>(view)
+        this.wtfView = WeakReference(view)
     }
 
     override fun getView(): V? = wtfView?.get()

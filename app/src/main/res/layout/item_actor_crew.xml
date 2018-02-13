@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="140dp"
-    android:padding="5dp"
-    android:orientation="vertical"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp"
     tools:ignore="UseCompoundDrawables">
+
     <ImageView
         android:id="@+id/ivHuman"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:contentDescription="@string/human" />
+
     <TextView
         android:id="@+id/tvHuman"
-        android:gravity="center"
-        android:background="@color/cardview_dark_background"
-        android:textColor="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/cardview_dark_background"
+        android:gravity="center"
+        android:textColor="@color/white" />
 </LinearLayout>

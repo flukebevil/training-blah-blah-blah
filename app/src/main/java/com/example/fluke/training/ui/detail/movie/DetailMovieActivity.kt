@@ -5,10 +5,10 @@ import android.content.Intent
 import android.net.Uri
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
-import android.util.Log
 import com.example.fluke.training.R
 import com.example.fluke.training.base.BaseActivity
-import com.example.fluke.training.detail.movie.DetailContract
+import com.example.fluke.training.base.BaseUrl
+import com.example.fluke.training.detail.DetailContract
 import com.example.fluke.training.detail.movie.DetailPresenter
 import com.example.fluke.training.di.ApplicationComponent
 import com.example.fluke.training.load
@@ -18,14 +18,13 @@ import com.example.fluke.training.model.Movie
 import com.example.fluke.training.model.MovieVideoPath
 import com.example.fluke.training.ui.detail.movie.adapter.DetailActorAdapter
 import com.example.fluke.training.ui.detail.movie.adapter.DetailCrewAdapter
-import com.example.fluke.training.base.BaseUrl
 import kotlinx.android.synthetic.main.activity_detail.*
 
 @SuppressLint("Registered")
 class DetailMovieActivity : BaseActivity<DetailContract.View, DetailPresenter>(), DetailContract.View {
 
     override fun getVideo(moviePath: MovieVideoPath) {
-        applicationContext.startActivity(Intent(Intent.ACTION_VIEW , Uri.parse(BaseUrl.baseYouUrl+moviePath.key)))
+        applicationContext.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(BaseUrl.baseYouUrl + moviePath.key)))
     }
 
     private val adapterActor: DetailActorAdapter by lazy { DetailActorAdapter(arrayListOf()) }
@@ -51,8 +50,10 @@ class DetailMovieActivity : BaseActivity<DetailContract.View, DetailPresenter>()
             load(BaseUrl.baseUrlImageMovie + ex.backdrop)
             setOnClickListener { presenter.getVideoPath(ex.id) }
         }
-        presenter.getDataActor(ex.id)
-        presenter.getDataCrew(ex.id)
+        presenter.apply {
+            getDataActor(ex.id)
+            getDataCrew(ex.id)
+        }
         setAdapter()
     }
 

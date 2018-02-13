@@ -17,11 +17,12 @@ abstract class BaseFragment<V : BaseContractor.View, P : BaseContractor.Presente
 
     @LayoutRes
     protected abstract fun layoutInflate(): Int
+
     protected abstract fun doInjection(appComponent: ApplicationComponent)
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? = inflater.inflate(layoutInflate(), container, false)
+                              savedInstanceState: Bundle?): View? = inflater.inflate(layoutInflate()
+                                , container, false)
 
     @Suppress("UNCHECKED_CAST")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +40,4 @@ abstract class BaseFragment<V : BaseContractor.View, P : BaseContractor.Presente
     protected abstract fun setAdapter()
 
     protected abstract fun initFunction()
-
-
 }

@@ -21,4 +21,4 @@ class Pager(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         1 -> HomeActivity.tab2
         else -> HomeActivity.tab3
     }
-    }
+}

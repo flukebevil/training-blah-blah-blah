@@ -6,13 +6,13 @@ import com.example.fluke.training.model.TelevisionType
 
 class DiscoverContractor {
 
-    interface Presenter : BaseContractor.Presenter<View>{
+    interface Presenter : BaseContractor.Presenter<View> {
         fun callMovieGenres()
         fun callTelevisionGenres()
     }
 
-    interface View: BaseContractor.View {
-        fun genresMovieGenres(arr : List<MovieType>)
-        fun genresTelevisionGenres(arr : List<TelevisionType>)
+    interface View : BaseContractor.View {
+        fun genresMovieGenres(arr: List<MovieType>)
+        fun genresTelevisionGenres(arr: List<TelevisionType>)
     }
 }

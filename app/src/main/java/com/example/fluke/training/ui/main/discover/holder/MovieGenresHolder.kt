@@ -11,12 +11,12 @@ import kotlinx.android.synthetic.main.item_show_genres.view.*
 class MovieGenresHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
 
     fun onBind(movie: MovieType) {
-        itemView.apply {
-            tvGenres.text = movie.type_name
-            setOnClickListener {
-                context.startActivity(Intent(context, ResultActivity::class.java)
-                        .putExtra(DiscoverFragment.KEY_MOVIE, movie.type_id))
-            }
+    itemView.apply {
+        tvGenres.text = movie.type_name
+        setOnClickListener {
+            context.startActivity(Intent(context, ResultActivity::class.java)
+                    .putExtra(DiscoverFragment.KEY_MOVIE, movie.type_id))
         }
     }
+}
 }

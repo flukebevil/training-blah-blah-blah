@@ -2,7 +2,7 @@ package com.example.fluke.training.detail.television
 
 import com.example.fluke.training.base.BasePresenter
 import com.example.fluke.training.base.BaseSubScribe
-import com.example.fluke.training.detail.movie.DetailContract
+import com.example.fluke.training.detail.DetailContract
 import com.example.fluke.training.model.CreditList
 import com.example.fluke.training.model.GetData
 import com.example.fluke.training.model.MovieVideoPathList
@@ -13,7 +13,7 @@ class DetailTelevisionPresenter @Inject constructor(private val getData: GetData
         BaseSubScribe.ResponseWtf<CreditList>,
         DetailContract.Presenter,
         GetData.DetailListener {
-    override fun getVideoPath(movieId: String?) = getData.requestTvVideoPath(movieId.toString() , this)
+    override fun getVideoPath(movieId: String?) = getData.requestTvVideoPath(movieId.toString(), this)
 
     override fun onCallVideoPathSuccess(t: MovieVideoPathList) {
         getView()?.getVideo(t.results[0])

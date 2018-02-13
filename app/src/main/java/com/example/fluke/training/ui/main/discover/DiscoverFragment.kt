@@ -47,8 +47,10 @@ class DiscoverFragment : BaseFragment<DiscoverContractor.View, DiscoverPresenter
     }
 
     override fun initFunction() {
-        presenter.callMovieGenres()
-        presenter.callTelevisionGenres()
+        presenter.apply {
+            callMovieGenres()
+            callTelevisionGenres()
+        }
     }
 
     override fun layoutInflate(): Int = R.layout.fragment_discover

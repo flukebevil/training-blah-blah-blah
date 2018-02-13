@@ -5,8 +5,8 @@ import android.support.v7.widget.OrientationHelper
 import com.example.fluke.training.R
 import com.example.fluke.training.base.BaseFragment
 import com.example.fluke.training.di.ApplicationComponent
+import com.example.fluke.training.main.fragment.tv.TelevisionPresenter
 import com.example.fluke.training.main.fragment.tv.TvContractor
-import com.example.fluke.training.main.fragment.tv.presenter.TelevisionPresenter
 import com.example.fluke.training.model.Television
 import com.example.fluke.training.ui.main.television.adapter.TelevisionPosterAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -44,9 +44,11 @@ class HomeTvFragment : BaseFragment<TvContractor.View, TelevisionPresenter>(), T
     }
 
     override fun initFunction() {
-        presenter.startCallPopData()
-        presenter.startCallTopRateData()
-        presenter.startCallUpComing()
+        presenter.apply {
+            startCallPopData()
+            startCallTopRateData()
+            startCallUpComing()
+        }
     }
 
     override fun layoutInflate(): Int = R.layout.fragment_home

@@ -4,8 +4,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.fluke.training.R
-import com.example.fluke.training.ui.main.discover.holder.TelevisionGenresHolder
 import com.example.fluke.training.model.TelevisionType
+import com.example.fluke.training.ui.main.discover.holder.TelevisionGenresHolder
 
 class TelevisionGenresAdapter(private var arr: List<TelevisionType>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -16,7 +16,8 @@ class TelevisionGenresAdapter(private var arr: List<TelevisionType>) : RecyclerV
 
     override fun getItemCount(): Int = arr.size
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) = (holder as TelevisionGenresHolder).onBind(arr[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int)
+            = (holder as TelevisionGenresHolder).onBind(arr[position])
 
     override fun getItemViewType(position: Int): Int = R.layout.item_show_genres
 

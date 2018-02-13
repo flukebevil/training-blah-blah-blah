@@ -1,8 +1,7 @@
-package com.example.fluke.training.main.fragment.movie.presenter
+package com.example.fluke.training.main.fragment.movie
 
 import com.example.fluke.training.base.BasePresenter
 import com.example.fluke.training.base.BaseSubScribe
-import com.example.fluke.training.main.fragment.movie.Contractor
 import com.example.fluke.training.model.GetData
 import com.example.fluke.training.model.MovieList
 import javax.inject.Inject

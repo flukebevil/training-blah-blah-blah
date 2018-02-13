@@ -9,8 +9,10 @@ import com.example.fluke.training.ui.result.ResultActivity
 import kotlinx.android.synthetic.main.item_show_genres.view.*
 
 class TelevisionGenresHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-    fun onBind(television : TelevisionType){
-        itemView.apply { tvGenres.text = television.type_name
+
+    fun onBind(television: TelevisionType) {
+        itemView.apply {
+            tvGenres.text = television.type_name
             setOnClickListener {
                 context.startActivity(Intent(context, ResultActivity::class.java)
                         .putExtra(DiscoverFragment.KEY_TELEVISION, television.type_id))

@@ -25,7 +25,5 @@ class DiscoverPresenter @Inject constructor(private val getData: GetData) :
 
     override fun callMovieGenres() = getData.requestMovieGenres(this)
 
-    override fun success(t: TelevisionType) {
-
-    }
+    override fun success(t: TelevisionType) {}
 }

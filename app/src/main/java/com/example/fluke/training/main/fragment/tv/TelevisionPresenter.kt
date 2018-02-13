@@ -1,8 +1,7 @@
-package com.example.fluke.training.main.fragment.tv.presenter
+package com.example.fluke.training.main.fragment.tv
 
 import com.example.fluke.training.base.BasePresenter
 import com.example.fluke.training.base.BaseSubScribe
-import com.example.fluke.training.main.fragment.tv.TvContractor
 import com.example.fluke.training.model.GetData
 import com.example.fluke.training.model.TelevisionList
 import javax.inject.Inject

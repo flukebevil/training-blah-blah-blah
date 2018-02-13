@@ -1,7 +1,9 @@
-package com.example.fluke.training.detail.movie
+package com.example.fluke.training.detail
 
 import com.example.fluke.training.base.BaseContractor
-import com.example.fluke.training.model.*
+import com.example.fluke.training.model.CreditActor
+import com.example.fluke.training.model.Crew
+import com.example.fluke.training.model.MovieVideoPath
 
 interface DetailContract {
     interface Presenter : BaseContractor.Presenter<View> {
@@ -13,6 +15,6 @@ interface DetailContract {
     interface View : BaseContractor.View {
         fun getViewActor(arr: List<CreditActor>?)
         fun getViewCrew(arr: List<Crew>?)
-        fun getVideo(moviePath : MovieVideoPath)
+        fun getVideo(moviePath: MovieVideoPath)
     }
 }

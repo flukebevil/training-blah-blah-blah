@@ -33,7 +33,6 @@ class ApiManager {
             .client(okHttpClient)
             .build()
 
-
     @Provides
     @Singleton
     fun provideOkHttpClientBuilder(): OkHttpClient.Builder = OkHttpClient.Builder()

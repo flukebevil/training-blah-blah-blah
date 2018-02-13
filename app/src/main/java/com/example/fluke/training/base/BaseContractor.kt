@@ -8,5 +8,4 @@ open class BaseContractor {
         fun attachView(view: V)
         fun getView(): V?
     }
-
 }

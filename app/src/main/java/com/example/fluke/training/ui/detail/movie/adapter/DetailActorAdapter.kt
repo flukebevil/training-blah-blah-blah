@@ -16,11 +16,11 @@ class DetailActorAdapter(private var arr: List<CreditActor>) : RecyclerView.Adap
 
     override fun getItemViewType(position: Int): Int = R.layout.item_actor_crew
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder = DetailActorHolder(LayoutInflater.from(parent?.context).inflate(viewType, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder
+            = DetailActorHolder(LayoutInflater.from(parent?.context).inflate(viewType, parent, false))
 
     override fun getItemCount(): Int = arr.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int)
             = (holder as DetailActorHolder).onBind(arr[position])
-
 }

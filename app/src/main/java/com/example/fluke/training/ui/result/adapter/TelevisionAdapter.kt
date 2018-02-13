@@ -16,9 +16,11 @@ class TelevisionAdapter(private var arr: List<Television>) : RecyclerView.Adapte
 
     override fun getItemViewType(position: Int): Int = R.layout.item_show_result
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder = TelevisionHolder(LayoutInflater.from(parent?.context).inflate(viewType, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder
+            = TelevisionHolder(LayoutInflater.from(parent?.context).inflate(viewType, parent, false))
 
     override fun getItemCount(): Int = arr.size
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) = (holder as TelevisionHolder).onBind(arr[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int)
+            = (holder as TelevisionHolder).onBind(arr[position])
 }

@@ -2,6 +2,7 @@ package com.example.fluke.training.detail.movie
 
 import com.example.fluke.training.base.BasePresenter
 import com.example.fluke.training.base.BaseSubScribe
+import com.example.fluke.training.detail.DetailContract
 import com.example.fluke.training.model.CreditList
 import com.example.fluke.training.model.GetData
 import com.example.fluke.training.model.MovieVideoPathList
@@ -16,7 +17,7 @@ class DetailPresenter @Inject constructor(private val getData: GetData) :
         getView()?.getVideo(t.results[0])
     }
 
-    override fun getVideoPath(movieId: String?) = getData.requestMovieVideoPath(movieId.toString() , this)
+    override fun getVideoPath(movieId: String?) = getData.requestMovieVideoPath(movieId.toString(), this)
 
     override fun onCrewCallback(t: CreditList) {
         getView()?.getViewCrew(t.crew_data)

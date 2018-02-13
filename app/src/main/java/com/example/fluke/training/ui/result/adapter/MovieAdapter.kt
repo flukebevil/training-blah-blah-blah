@@ -7,7 +7,7 @@ import com.example.fluke.training.R
 import com.example.fluke.training.model.Movie
 import com.example.fluke.training.ui.result.holder.MovieHolder
 
-class MovieAdapter(private var arr : List<Movie>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class MovieAdapter(private var arr: List<Movie>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun setItem(list: List<Movie>) = apply {
         arr = list
@@ -17,9 +17,10 @@ class MovieAdapter(private var arr : List<Movie>) : RecyclerView.Adapter<Recycle
     override fun getItemViewType(position: Int): Int = R.layout.item_show_result
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder
-            = MovieHolder(LayoutInflater.from(parent?.context).inflate(viewType , parent , false))
+            = MovieHolder(LayoutInflater.from(parent?.context).inflate(viewType, parent, false))
 
     override fun getItemCount(): Int = arr.size
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) = (holder as MovieHolder).onBind(arr[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int)
+            = (holder as MovieHolder).onBind(arr[position])
 }

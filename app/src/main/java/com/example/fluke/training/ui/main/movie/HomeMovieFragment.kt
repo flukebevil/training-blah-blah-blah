@@ -1,14 +1,13 @@
 package com.example.fluke.training.ui.main.movie
 
 import android.annotation.SuppressLint
-import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import com.example.fluke.training.R
 import com.example.fluke.training.base.BaseFragment
 import com.example.fluke.training.di.ApplicationComponent
 import com.example.fluke.training.main.fragment.movie.Contractor
-import com.example.fluke.training.main.fragment.movie.presenter.MoviePresenter
+import com.example.fluke.training.main.fragment.movie.MoviePresenter
 import com.example.fluke.training.model.Movie
 import com.example.fluke.training.ui.main.movie.adapter.MoviePosterAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -19,7 +18,7 @@ class HomeMovieFragment : BaseFragment<Contractor.View, MoviePresenter>(), Contr
     private val adapterUpcomingPoster: MoviePosterAdapter by lazy { MoviePosterAdapter(arrayListOf()) }
 
     override fun holdUpComingData(arr: List<Movie>?) {
-        arr?.let {it -> adapterUpcomingPoster.setItem(it) }
+        arr?.let { it -> adapterUpcomingPoster.setItem(it) }
     }
 
     override fun holdTopData(arr: List<Movie>?) {
@@ -45,9 +44,11 @@ class HomeMovieFragment : BaseFragment<Contractor.View, MoviePresenter>(), Contr
 
     @SuppressLint("SetTextI18n")
     override fun initFunction() {
-        presenter.startCallPopData()
-        presenter.startCallTopData()
-        presenter.startCallUpcomingData()
+        presenter.apply {
+            startCallPopData()
+            startCallTopData()
+            startCallUpcomingData()
+        }
     }
 
     override fun layoutInflate(): Int = R.layout.fragment_home

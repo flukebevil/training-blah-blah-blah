@@ -9,7 +9,7 @@ import com.example.fluke.training.ui.detail.movie.holder.DetailCrewHolder
 
 class DetailCrewAdapter(private var arr: List<Crew>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    fun setItem(list : List<Crew>){
+    fun setItem(list: List<Crew>) {
         arr = list
         notifyDataSetChanged()
     }
@@ -21,6 +21,6 @@ class DetailCrewAdapter(private var arr: List<Crew>) : RecyclerView.Adapter<Recy
 
     override fun getItemCount(): Int = arr.size
 
-   override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int)
             = (holder as DetailCrewHolder).onBind(arr[position])
 }

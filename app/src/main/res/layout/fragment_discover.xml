@@ -6,7 +6,6 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/egg"
         android:orientation="vertical"
         android:padding="5dp">
 
@@ -21,13 +20,19 @@
             android:singleLine="true"
             android:textStyle="bold" />
 
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:padding="10dp"
-            android:text="@string/movie_by_genres"
-            android:textStyle="bold" />
+            android:layout_height="50dp"
+            android:background="@color/brown">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                android:text="@string/movie_by_genres"
+                android:textStyle="bold" />
+        </FrameLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/listMovieGenres"
@@ -36,13 +41,19 @@
             android:layout_marginTop="5dp"
             android:padding="10dp" />
 
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:padding="10dp"
-            android:text="@string/television_by_genres"
-            android:textStyle="bold" />
+            android:layout_height="50dp"
+            android:background="@color/brown">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                android:text="@string/television_by_genres"
+                android:textStyle="bold" />
+        </FrameLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/listTelevisionGenres"

@@ -6,7 +6,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 open class GetData(private val baseApi: BaseService) {
-
     interface TelevisionTopRateListener {
         fun onTopRateSuccess(t: TelevisionList)
         fun upComingSuccess(t: TelevisionList)

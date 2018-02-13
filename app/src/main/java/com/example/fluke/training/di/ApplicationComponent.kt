@@ -20,6 +20,6 @@ interface ApplicationComponent {
     fun inject(homeTvFragment: HomeTvFragment)
     fun inject(discoverFragment: DiscoverFragment)
     fun inject(resultActivity: ResultActivity)
-    fun inject(detailMovieActivity : DetailMovieActivity)
+    fun inject(detailMovieActivity: DetailMovieActivity)
     fun inject(detailTelevisionActivity: DetailTelevisionActivity)
 }
