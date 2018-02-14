@@ -6,34 +6,51 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
-import android.util.Log
 import com.example.fluke.training.R
 import com.example.fluke.training.model.Movie
 import com.example.fluke.training.model.MovieList
+import com.example.fluke.training.model.Television
+import com.example.fluke.training.model.TelevisionList
+import com.example.fluke.training.ui.myfav.adapter.MyFavMovieAdapter
+import com.example.fluke.training.ui.myfav.adapter.MyFavTvAdapter
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_view_my_fav.*
 
 @Suppress("UNUSED_EXPRESSION")
 class ViewMyFavActivity : AppCompatActivity() {
-    private val myfavAdapter : MyFavAdapter by lazy { MyFavAdapter(arrayListOf()) }
+    private val myFavMovieAdapter: MyFavMovieAdapter by lazy { MyFavMovieAdapter(arrayListOf()) }
+    private val myFavTvAdapter: MyFavTvAdapter by lazy { MyFavTvAdapter(arrayListOf()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_my_fav)
-        favList.apply {
-            layoutManager = LinearLayoutManager(context , OrientationHelper.HORIZONTAL , false)
-            adapter = myfavAdapter
+        favMovieList.apply {
+            layoutManager = LinearLayoutManager(context, OrientationHelper.HORIZONTAL, false)
+            adapter = myFavMovieAdapter
         }
-        showFavList()
+        favTvList.apply {
+            layoutManager = LinearLayoutManager(context, OrientationHelper.HORIZONTAL, false)
+            adapter = myFavTvAdapter
+        }
+        showMovieFavList()
+        showTelevisionFavList()
     }
 
-    private fun showFavList(){
+    private fun showTelevisionFavList() {
         val gson = Gson()
-        val show : SharedPreferences = applicationContext.getSharedPreferences("myfav",Context.MODE_PRIVATE)
-        val json : String = show.getString("movie","")
-        val data : MovieList = gson.fromJson(json , MovieList::class.java)
-        Log.e("json myfav" , json)
-        data.results.let { it -> it?.let { it1 -> myfavAdapter.setItem(it1) } }
+         val show: SharedPreferences = applicationContext.getSharedPreferences(getString(R.string.session), Context.MODE_PRIVATE)
+        val jsonTv: String = show.getString(getString(R.string.sesstion_name), "")
+        val dataTv: TelevisionList = gson.fromJson(jsonTv, TelevisionList::class.java)
+        val mutationTvList: MutableList<Television> = dataTv.results as MutableList<Television>
+        mutationTvList.let { it -> it.let { it1 -> myFavTvAdapter.setItem(it1) } }
+    }
+
+    private fun showMovieFavList() {
+        val gson = Gson()
+         val show: SharedPreferences = applicationContext.getSharedPreferences(getString(R.string.session), Context.MODE_PRIVATE)
+        val json: String = show.getString(getString(R.string.session_name_movie), "")
+        val data: MovieList = gson.fromJson(json, MovieList::class.java)
+        val mutationList: MutableList<Movie> = data.results as MutableList<Movie>
+        mutationList.let { it -> it.let { it1 -> myFavMovieAdapter.setItem(it1) } }
     }
 }

@@ -16,4 +16,19 @@
     <string name="human">human</string>
     <string name="crew">Crew</string>
     <string name="myfav">myfav</string>
+    <string name="movie">Movie</string>
+    <string name="television">Television</string>
+    <string name="love">Love</string>
+    <string name="noctic_button">Favored</string>
+    <string name="session">myfav</string>
+    <string name="sesstion_name">tv</string>
+    <string name="session_name_movie">movie</string>
+    <string name="success">Success</string>
+    <string name="welcome_message">You are fuckingGuess</string>
+    <string name="fucker_Email">FuckingGuess@OntheHell.Heaven</string>
+    <string name="image_des_content_menu_nav">its not ur business</string>
+    <string name="title_activity_runner">RunnerActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

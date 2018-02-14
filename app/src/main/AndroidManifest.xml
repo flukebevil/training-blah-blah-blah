@@ -15,12 +15,11 @@
         <activity
             android:name=".ui.main.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/AppTheme.NoActionBar"><intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity android:name=".ui.result.ResultActivity">
             <meta-data
@@ -42,6 +41,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.fluke.training.ui.main.HomeActivity" />
         </activity>
+        <activity
+            android:name=".ui.RunnerActivity"
+            android:label="@string/title_activity_runner"
+            android:theme="@style/AppTheme.NoActionBar">  </activity>
     </application>
 
 </manifest>

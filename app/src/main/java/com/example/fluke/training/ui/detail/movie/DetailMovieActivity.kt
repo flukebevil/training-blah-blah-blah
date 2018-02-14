@@ -7,10 +7,11 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
-import android.util.Log
+import android.widget.Toast
 import com.example.fluke.training.R
 import com.example.fluke.training.base.BaseActivity
 import com.example.fluke.training.base.BaseUrl
+import com.example.fluke.training.checkNonDuplicate
 import com.example.fluke.training.detail.DetailContract
 import com.example.fluke.training.detail.movie.DetailPresenter
 import com.example.fluke.training.di.ApplicationComponent
@@ -45,7 +46,19 @@ class DetailMovieActivity : BaseActivity<DetailContract.View, DetailPresenter>()
     override fun layoutContentView(): Int = R.layout.activity_detail
 
     override fun setupView() {
+        val mutableList: MutableList<Movie>
+        val show: SharedPreferences = applicationContext.getSharedPreferences(getString(R.string.session), Context.MODE_PRIVATE)
+        val json: String? = show.getString(getString(R.string.session_name_movie), "")
+        val type = object : TypeToken<MovieList>() {}.type
+        val saveFav: SharedPreferences = applicationContext.getSharedPreferences(getString(R.string.session), Context.MODE_PRIVATE)
+        val editFav: SharedPreferences.Editor = saveFav.edit()
+        val gson = Gson()
+        val mu: MovieList? = gson.fromJson(json, type)
+        var movieList = MovieList(arrayListOf())//Log.e("OK", mu.toString())
+        mu?.let { it -> movieList = it }
+        mutableList = movieList.results as MutableList<Movie>
         val ex = intent.getParcelableExtra<Movie>(MOVIE_KEY)
+        checkButton(ex, mutableList)
         tvName.text = ex.title
         tvDesc.text = ex.overview
         ivBackdrop.apply {
@@ -56,44 +69,52 @@ class DetailMovieActivity : BaseActivity<DetailContract.View, DetailPresenter>()
             getDataActor(ex.id)
             getDataCrew(ex.id)
         }
-        val saveFav: SharedPreferences = applicationContext.getSharedPreferences("myfav", Context.MODE_PRIVATE)
-        val editFav: SharedPreferences.Editor = saveFav.edit()
-        val gson = Gson()
+
         btnFav.setOnClickListener {
-            favManager(ex, editFav, gson)
+            favManager(ex, editFav, gson, mutableList)
         }
         setAdapter()
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun checkButton(ex: Movie, mutableList: MutableList<Movie>) {
+        when (mutableList.checkNonDuplicate(ex)) {
+            0 -> {
+                btnFav.text = getString(R.string.noctic_button)
+            }
+        }
+    }
+
     @SuppressLint("ApplySharedPref")
-    private fun favManager(ex: Movie, editFav: SharedPreferences.Editor, gson: Gson) {
-        val mutableList: MutableList<Movie>
-        val show: SharedPreferences = applicationContext.getSharedPreferences("myfav", Context.MODE_PRIVATE)
-        val json: String? = show.getString("movie", "")
-        val type = object : TypeToken<MovieList>() {}.type
-        val mu: MovieList? = gson.fromJson(json, type)
-        var movieList = MovieList(arrayListOf())//Log.e("OK", mu.toString())
-        mu?.let { it -> movieList = it }
-        mutableList = movieList.results as MutableList<Movie>
-        mutableList.add(ex)
-        val ml = MovieList(mutableList)
-        val convert: String = gson.toJson(ml)
-        editFav.putString("movie", convert)
-        editFav.commit()//Log.e("check", mutableList.size.toString())
-    }
-
-    private fun setAdapter() {
-        actorList.apply {
-            layoutManager = LinearLayoutManager(context, OrientationHelper.HORIZONTAL, false)
-            adapter = adapterActor
-        }
-        crewList.apply {
-            layoutManager = LinearLayoutManager(context, OrientationHelper.HORIZONTAL, false)
-            adapter = adapterCrew
+    private fun favManager(ex: Movie, editFav: SharedPreferences.Editor, gson: Gson, mutableList: MutableList<Movie>) {
+        when (mutableList.checkNonDuplicate(ex)) {
+            1 -> {
+                mutableList.add(ex)
+                val ml = MovieList(mutableList)
+                val convert: String = gson.toJson(ml)
+                btnFav.text = getString(R.string.noctic_button)
+                editFav.putString(getString(R.string.session_name_movie), convert)
+                editFav.commit()//Log.e("check", mutableList.size.toString())
+                Toast.makeText(applicationContext, getString(R.string.success), Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                Toast.makeText(applicationContext,  getString(R.string.noctic_button), Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
-    companion object {
-        const val MOVIE_KEY = "MOVIEABC"
+        private fun setAdapter() {
+            actorList.apply {
+                layoutManager = LinearLayoutManager(context, OrientationHelper.HORIZONTAL, false)
+                adapter = adapterActor
+            }
+            crewList.apply {
+                layoutManager = LinearLayoutManager(context, OrientationHelper.HORIZONTAL, false)
+                adapter = adapterCrew
+            }
+        }
+
+        companion object {
+            const val MOVIE_KEY = "MOVIEABC"
+        }
     }
-}

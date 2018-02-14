@@ -3,11 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
     android:layout_height="match_parent"
     tools:context="com.example.fluke.training.ui.myfav.ViewMyFavActivity">
-
+<TextView
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:textSize="20sp"
+    android:textStyle="bold"
+    android:text="@string/movie"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/favList"
+        android:id="@+id/favMovieList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="@string/television"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/favTvList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>
