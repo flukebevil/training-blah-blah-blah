@@ -12,6 +12,9 @@ interface BaseService {
     @GET("search/movie")
     fun search(@Query("query") query: String): Observable<Response<MovieList>>
 
+    @GET("search/tv")
+    fun searchTv(@Query("query") query: String): Observable<Response<Television>>
+
     @GET("tv/on_the_air?language=en-US&page=1")
     fun televisionOnTheAir(): Observable<Response<TelevisionList>>
 
@@ -41,6 +44,13 @@ interface BaseService {
 
     @GET("discover/movie?language=en-US&sort_by=vote_count.desc&include_adult=false&include_video=false&page=1")
     fun selectMovieByGenres(@Query("with_genres") query: String): Observable<Response<MovieList>>
+
+    @GET("tv/{tv_id}?language=en-US")
+    fun selectTvDetail(@Path("tv_id") query: String): Observable<Response<TelevisionDetail>>
+
+    @GET("tv/{tv_id}/season/{tv_season}?language=en-US")
+    fun selectTvSeason(@Path("tv_id") tvId: String, @Path("tv_season") tvSeason: String)
+            : Observable<Response<TelevisionSeason>>
 
     @GET("genre/movie/list?language=en-US")
     fun selectMovieGenres(): Observable<Response<MovieTypeList>>

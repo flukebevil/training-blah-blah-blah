@@ -10,14 +10,6 @@
         android:orientation="vertical"
         android:padding="5dp">
 
-        <Button
-            android:id="@+id/btnFav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:text="@string/love"
-            tools:ignore="RtlHardcoded" />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,18 +23,27 @@
                 android:contentDescription="@string/back_drop_image" />
 
             <ImageView
-                android:layout_width="50dp"
+                android:layout_width="60dp"
                 android:layout_height="200dp"
                 android:layout_centerHorizontal="true"
                 android:contentDescription="@string/back_drop_image"
                 android:src="@drawable/you_icon" />
         </RelativeLayout>
 
+        <Button
+            android:id="@+id/btnFav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:text="@string/love"
+            tools:ignore="RtlHardcoded" />
+
         <TextView
             android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:background="@color/brown"
             android:paddingStart="20dp"
             android:textSize="26sp"
             android:textStyle="bold"
@@ -102,8 +103,27 @@
             android:layout_marginTop="5dp"
             android:padding="5dp" />
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/seasonFrame"
+            android:visibility="gone"
+            android:background="@color/brown">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:text="@string/tv_season"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                tools:ignore="RtlSymmetry" />
+        </FrameLayout>
+
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/youtubeList"
+            android:id="@+id/seasonList"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"

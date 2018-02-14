@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
+import android.view.View
 import android.widget.Toast
 import com.example.fluke.training.R
 import com.example.fluke.training.base.BaseActivity
@@ -60,6 +61,8 @@ class DetailTelevisionActivity : BaseActivity<DetailContract.View, DetailTelevis
 
         checkButton(ex, mutableList)
 
+        seasonFrame.visibility = View.VISIBLE
+        seasonList.visibility = View.VISIBLE
         tvName.text = ex.name
         tvDesc.text = ex.overview
         ivBackdrop.apply {

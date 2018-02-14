@@ -80,7 +80,7 @@ class DetailMovieActivity : BaseActivity<DetailContract.View, DetailPresenter>()
     private fun checkButton(ex: Movie, mutableList: MutableList<Movie>) {
         when (mutableList.checkNonDuplicate(ex)) {
             0 -> {
-                btnFav.text = getString(R.string.noctic_button)
+                btnFav.text = getString(R.string.fuck_message)
             }
         }
     }

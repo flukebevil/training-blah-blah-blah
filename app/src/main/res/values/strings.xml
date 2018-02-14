@@ -18,7 +18,7 @@
     <string name="myfav">myfav</string>
     <string name="movie">Movie</string>
     <string name="television">Television</string>
-    <string name="love">Love</string>
+    <string name="love">Love It!!</string>
     <string name="noctic_button">Favored</string>
     <string name="session">myfav</string>
     <string name="sesstion_name">tv</string>
@@ -31,4 +31,6 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="tv_season">TV-Season</string>
+    <string name="fuck_message">ahh~~ fuck you did it ~~hha</string>
 </resources>
