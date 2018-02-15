@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import org.parceler.Parcel
 
 @Parcel //TODO upcoming , now play data , pop data ,top rate
-data class Movie(@SerializedName("vote_average") val vote_average: String? = null
+data class Movie(@SerializedName("vote_average") var vote_average: String? = null
                  , @SerializedName("title") val title: String? = null
                  , @SerializedName("poster_path") val poster: String? = null
                  , @SerializedName("backdrop_path") val backdrop: String? = null
@@ -63,3 +63,9 @@ data class MovieVideoPath(@SerializedName("key") val key: String, @SerializedNam
 
 @Parcel
 data class MovieVideoPathList(@SerializedName("results") val results: List<MovieVideoPath>)
+
+@Parcel
+data class Rating(val id :Int , var rating : Float)
+
+@Parcel
+data class RatingList(val rate : List<Rating>)

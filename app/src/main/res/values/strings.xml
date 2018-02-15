@@ -33,4 +33,13 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="tv_season">TV-Season</string>
     <string name="fuck_message">ahh~~ fuck you did it ~~hha</string>
+    <string name="episode_image">Episode Image</string>
+    <string name="season">Season</string>
+    <string name="i_will_watch_it_later">i will watch it later</string>
+    <string name="success_fuck_text">Added La Fuck!!!</string>
+    <string name="wish_list">Wish List</string>
+    <string name="rate_it">rate it!!</string>
+    <string name="you_are_just_fucking_guess">You are just fucking Guess!!</string>
+    <string name="emptyimage">emptyImage</string>
+    <string name="my_favorite">My Favorite</string>
 </resources>

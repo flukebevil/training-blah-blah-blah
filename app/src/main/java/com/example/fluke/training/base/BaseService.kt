@@ -12,9 +12,6 @@ interface BaseService {
     @GET("search/movie")
     fun search(@Query("query") query: String): Observable<Response<MovieList>>
 
-    @GET("search/tv")
-    fun searchTv(@Query("query") query: String): Observable<Response<Television>>
-
     @GET("tv/on_the_air?language=en-US&page=1")
     fun televisionOnTheAir(): Observable<Response<TelevisionList>>
 

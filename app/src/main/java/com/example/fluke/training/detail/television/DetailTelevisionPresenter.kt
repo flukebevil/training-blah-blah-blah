@@ -13,6 +13,19 @@ class DetailTelevisionPresenter @Inject constructor(private val getData: GetData
         BaseSubScribe.ResponseWtf<CreditList>,
         DetailContract.Presenter,
         GetData.DetailListener {
+
+    override fun onTvDetailSuccess(t: String, tvId: String) {
+        var i = 0
+        val seasonList : MutableList<String> = arrayListOf()
+        while ( i < t.toInt()){
+            seasonList.add("${i+1}")
+            i++
+        }
+        getView()?.setSeasonCount(seasonList, tvId)
+    }
+
+    override fun getSeason(tvId: String) = getData.requestTvDetailSeasonCount(tvId, this)
+
     override fun getVideoPath(movieId: String?) = getData.requestTvVideoPath(movieId.toString(), this)
 
     override fun onCallVideoPathSuccess(t: MovieVideoPathList) {

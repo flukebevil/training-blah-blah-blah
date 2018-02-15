@@ -8,7 +8,7 @@ import org.parceler.Parcel
 data class Television(@SerializedName("id") val id: String, @SerializedName("name") val name: String
                       , @SerializedName("backdrop_path") val backdrop_path: String, @SerializedName("poster_path") val poster_path: String
                       , @SerializedName("overview") val overview: String
-                      , @SerializedName("vote_average") val vote_average: String) : Parcelable {
+                      , @SerializedName("vote_average") var vote_average: String) : Parcelable {
     constructor(parcel: android.os.Parcel) : this(
             parcel.readString(),
             parcel.readString(),
@@ -38,9 +38,9 @@ data class Television(@SerializedName("id") val id: String, @SerializedName("nam
 
 @Parcel
 data class Episode(@SerializedName("air_date") val air_date: String
-                   , @SerializedName("name") val number: String
+                   , @SerializedName("name") val name: String
                    , @SerializedName("overview") val overview: String
-                   , @SerializedName("still_path") val still_path: String):Parcelable{
+                   , @SerializedName("still_path") val still_path: String): Parcelable{
     constructor(parcel: android.os.Parcel) : this(
             parcel.readString(),
             parcel.readString(),
@@ -49,7 +49,7 @@ data class Episode(@SerializedName("air_date") val air_date: String
 
     override fun writeToParcel(parcel: android.os.Parcel, flags: Int) {
         parcel.writeString(air_date)
-        parcel.writeString(number)
+        parcel.writeString(name)
         parcel.writeString(overview)
         parcel.writeString(still_path)
     }

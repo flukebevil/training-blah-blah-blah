@@ -4,16 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.fluke.training.R
-import com.example.fluke.training.model.Movie
-import com.example.fluke.training.model.MovieList
 import com.example.fluke.training.model.Television
 import com.example.fluke.training.model.TelevisionList
-import com.example.fluke.training.ui.myfav.holder.MyFavMovieHolder
 import com.example.fluke.training.ui.myfav.holder.MyFavTvHolder
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -22,7 +18,6 @@ import kotlinx.android.synthetic.main.item_show_fav.view.*
 class MyFavTvAdapter(private var arr: MutableList<Television>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun setItem(list: MutableList<Television>) {
-        Log.e("check data adapter" , list.toString())
         arr = list
         notifyDataSetChanged()
     }
@@ -52,7 +47,7 @@ class MyFavTvAdapter(private var arr: MutableList<Television>) : RecyclerView.Ad
         mutationList.removeAt(position)
         val ml = TelevisionList(mutationList)
         val convert: String = gson.toJson(ml)
-        editFav.putString("tv" , convert)
+        editFav.putString("tv", convert)
         editFav.commit()
         arr.removeAt(position)
         notifyItemRemoved(position)

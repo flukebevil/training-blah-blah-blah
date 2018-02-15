@@ -1,4 +1,4 @@
-package com.example.fluke.training.ui.myfav.adapter
+package com.example.fluke.training.ui.later.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import com.example.fluke.training.R
 import com.example.fluke.training.model.Movie
 import com.example.fluke.training.model.MovieList
-import com.example.fluke.training.ui.myfav.holder.MyFavMovieHolder
+import com.example.fluke.training.ui.later.holder.MovieLaterHolder
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.item_show_fav.view.*
 
-class MyFavMovieAdapter(private var arr: MutableList<Movie>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MovieLaterAdapter(private var arr: MutableList<Movie>)  : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun setItem(list: MutableList<Movie>) {
         arr = list
@@ -24,12 +24,12 @@ class MyFavMovieAdapter(private var arr: MutableList<Movie>) : RecyclerView.Adap
 
     override fun getItemViewType(position: Int): Int = R.layout.item_show_fav
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder = MyFavMovieHolder(LayoutInflater.from(parent?.context).inflate(viewType, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder = MovieLaterHolder(LayoutInflater.from(parent?.context).inflate(viewType, parent, false))
 
     override fun getItemCount(): Int = arr.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        (holder as MyFavMovieHolder).onBind(arr[position])
+        (holder as MovieLaterHolder).onBind(arr[position])
         holder.itemView.btnDelete.setOnClickListener {
             onDelete(position, holder.itemView)
         }
@@ -38,7 +38,7 @@ class MyFavMovieAdapter(private var arr: MutableList<Movie>) : RecyclerView.Adap
     @SuppressLint("CommitPrefEdits", "ApplySharedPref")
     private fun onDelete(position: Int, itemView: View) {
         val gson = Gson()
-        val show: SharedPreferences = itemView.context.getSharedPreferences("myfav", Context.MODE_PRIVATE)
+        val show: SharedPreferences = itemView.context.getSharedPreferences("later", Context.MODE_PRIVATE)
         val json: String? = show.getString("movie", "")
         val type = object : TypeToken<MovieList>() {}.type
         val mu: MovieList? = gson.fromJson(json, type)

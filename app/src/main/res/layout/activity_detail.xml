@@ -29,6 +29,25 @@
                 android:contentDescription="@string/back_drop_image"
                 android:src="@drawable/you_icon" />
         </RelativeLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RatingBar
+                android:id="@+id/rating"
+                android:numStars="5"
+                android:stepSize="0.1"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:text="@string/rate_it"
+                android:background="@color/egg"
+                android:id="@+id/btnRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnFav"
@@ -36,6 +55,14 @@
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
             android:text="@string/love"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/btnLater"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="@string/i_will_watch_it_later"
             tools:ignore="RtlHardcoded" />
 
         <TextView
@@ -104,11 +131,11 @@
             android:padding="5dp" />
 
         <FrameLayout
+            android:id="@+id/seasonFrame"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/seasonFrame"
-            android:visibility="gone"
-            android:background="@color/brown">
+            android:background="@color/brown"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
@@ -123,11 +150,11 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/seasonList"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
             android:layout_marginTop="15dp"
-            android:padding="5dp" />
+            android:padding="5dp"
+            android:visibility="gone" />
 
     </LinearLayout>
 </ScrollView>

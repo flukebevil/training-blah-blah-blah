@@ -13,6 +13,11 @@ class DetailPresenter @Inject constructor(private val getData: GetData) :
         BaseSubScribe.ResponseWtf<CreditList>,
         DetailContract.Presenter,
         GetData.DetailListener {
+
+    override fun getSeason(movieId: String) {}
+
+    override fun onTvDetailSuccess(t: String, tvId: String) {}
+
     override fun onCallVideoPathSuccess(t: MovieVideoPathList) {
         getView()?.getVideo(t.results[0])
     }

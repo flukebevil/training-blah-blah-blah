@@ -29,6 +29,7 @@ open class GetData(private val baseApi: BaseService) {
     interface DetailListener {
         fun onCrewCallback(t: CreditList)
         fun onCallVideoPathSuccess(t: MovieVideoPathList)
+        fun onTvDetailSuccess(t: String, tvId: String)
     }
 
     private fun selectMovieGenresItem() = baseApi.selectMovieGenres()
@@ -46,6 +47,8 @@ open class GetData(private val baseApi: BaseService) {
     private fun selectTelevisionCredit(key: String) = baseApi.selectTelevisionCredit(key)
     private fun selectMovieVideoPath(movieId: String) = baseApi.selectMovieVideoPath(movieId)
     private fun selectTvVideoPath(movieId: String) = baseApi.selectTelevisionVideoPath(movieId)
+    private fun selectTvSeasonCountSearch(tvId: String) = baseApi.selectTvDetail(tvId)
+    private fun selectTvEpisodeData(tvId: String , tvSeason :String) = baseApi.selectTvSeason(tvId , tvSeason)
 
     fun requestMovieGenresResult(key: String, callback: ResultListener) {
         selectMovieGenresResultList(key).subscribeOn(Schedulers.io())
@@ -54,6 +57,17 @@ open class GetData(private val baseApi: BaseService) {
                     override fun success(t: MovieList) {
                         callback.onMovieGenresCallDetail(t)
                     }
+                }))
+    }
+
+    fun requestTvDetailSeasonCount(tvId: String , callback: DetailListener){
+        selectTvSeasonCountSearch(tvId).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(BaseSubScribe(object : BaseSubScribe.ResponseWtf<TelevisionDetail>{
+                    override fun success(t: TelevisionDetail) {
+                        callback.onTvDetailSuccess(t.numberOfSeason, tvId)
+                    }
+
                 }))
     }
 
@@ -95,6 +109,12 @@ open class GetData(private val baseApi: BaseService) {
 
     fun requestMovieCredit(key: String, callback: BaseSubScribe.ResponseWtf<CreditList>) {
         selectMovieCredit(key).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(BaseSubScribe(callback))
+    }
+
+    fun requestEpisodeData(tvId: String , tvSeason: String , callback: BaseSubScribe.ResponseWtf<TelevisionSeason>) {
+        selectTvEpisodeData(tvId , tvSeason).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(BaseSubScribe(callback))
     }

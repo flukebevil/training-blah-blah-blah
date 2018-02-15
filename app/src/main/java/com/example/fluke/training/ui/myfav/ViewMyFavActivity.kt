@@ -1,5 +1,6 @@
 package com.example.fluke.training.ui.myfav
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -16,6 +17,7 @@ import com.example.fluke.training.ui.myfav.adapter.MyFavTvAdapter
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_view_my_fav.*
 
+@SuppressLint("Registered")
 @Suppress("UNUSED_EXPRESSION")
 class ViewMyFavActivity : AppCompatActivity() {
     private val myFavMovieAdapter: MyFavMovieAdapter by lazy { MyFavMovieAdapter(arrayListOf()) }
@@ -39,18 +41,24 @@ class ViewMyFavActivity : AppCompatActivity() {
     private fun showTelevisionFavList() {
         val gson = Gson()
          val show: SharedPreferences = applicationContext.getSharedPreferences(getString(R.string.session), Context.MODE_PRIVATE)
-        val jsonTv: String = show.getString(getString(R.string.sesstion_name), "")
-        val dataTv: TelevisionList = gson.fromJson(jsonTv, TelevisionList::class.java)
-        val mutationTvList: MutableList<Television> = dataTv.results as MutableList<Television>
-        mutationTvList.let { it -> it.let { it1 -> myFavTvAdapter.setItem(it1) } }
+        val jsonTv: String? = show.getString(getString(R.string.sesstion_name), null)
+        jsonTv?.let {
+            val dataTv: TelevisionList = gson.fromJson(it, TelevisionList::class.java)
+            val mutationTvList: MutableList<Television> = dataTv.results as MutableList<Television>
+            mutationTvList.let { it -> it.let { it1 -> myFavTvAdapter.setItem(it1) } }
+        }
+
     }
 
     private fun showMovieFavList() {
         val gson = Gson()
          val show: SharedPreferences = applicationContext.getSharedPreferences(getString(R.string.session), Context.MODE_PRIVATE)
-        val json: String = show.getString(getString(R.string.session_name_movie), "")
-        val data: MovieList = gson.fromJson(json, MovieList::class.java)
-        val mutationList: MutableList<Movie> = data.results as MutableList<Movie>
-        mutationList.let { it -> it.let { it1 -> myFavMovieAdapter.setItem(it1) } }
+        val json: String? = show.getString(getString(R.string.session_name_movie), null)
+        json?.let {
+            val data: MovieList = gson.fromJson(it, MovieList::class.java)
+            val mutationList: MutableList<Movie> = data.results as MutableList<Movie>
+            mutationList.let { it -> it.let { it1 -> myFavMovieAdapter.setItem(it1) } }
+        }
+
     }
 }

@@ -1,4 +1,4 @@
-package com.example.fluke.training.ui.myfav.holder
+package com.example.fluke.training.ui.later.holder
 
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
@@ -9,8 +9,7 @@ import com.example.fluke.training.model.Television
 import com.example.fluke.training.ui.detail.television.DetailTelevisionActivity
 import kotlinx.android.synthetic.main.item_show_fav.view.*
 
-@Suppress("DEPRECATION")
-class MyFavTvHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+class TelevisionLaterHolder(itemView: View?): RecyclerView.ViewHolder(itemView) {
 
     fun onBind(movie: Television) {
         itemView.apply {
