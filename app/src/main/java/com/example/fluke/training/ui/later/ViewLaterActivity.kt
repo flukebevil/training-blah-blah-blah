@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
+import android.util.Log
 import com.example.fluke.training.R
 import com.example.fluke.training.model.Movie
 import com.example.fluke.training.model.MovieList
@@ -36,6 +37,7 @@ class ViewLaterActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context, OrientationHelper.HORIZONTAL, false)
             adapter = laterTvAdapter
         }
+        Log.e("aeijfa","aiwejfaiw")
         showMovieLaterList(show, gson)
         showTelevisionLaterList(show, gson)
     }
